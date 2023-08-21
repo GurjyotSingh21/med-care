@@ -1,6 +1,11 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+:root{
+  --green:#065a60;
+  --light-green:#248277;
+  --black:#2f3e46;
+  --light-color:#33415c;
+  --box-shadow: .5rem .5rem 0 rgba(22,160,133,.2);
+  --text-shadow: .4rem .4rem 0 rgba(0,0,0,.2);
+  --border:.2rem solid var(--green);
 }
