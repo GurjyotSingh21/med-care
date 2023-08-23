@@ -81,7 +81,7 @@
     margin-left: 1rem;
   }
 
-  .header{
+  .header {
     padding: 1rem 7%;
     position: fixed;
     top:0;
@@ -93,6 +93,7 @@
     align-items: center;
     justify-content: space-between;
     background: #eee;
+    
 }
 .header .logo {
     font-size: 3rem;
@@ -119,9 +120,18 @@
   font-size: 2rem;
   color: var(--light-color);
   margin-left: 2rem;
+  &.booking_mobile{
+    color: white;
+  }
+  
+  & .booking{
+    right:0;
+  }
+  
 }
 
-.header .navbar a:hover{
+
+.header .navbar a:hover:not(:last-child){
   font-weight: 500;
     color: var(--light-green);
 }
@@ -137,6 +147,14 @@
   scale: 1.1;
   transition: .7s;
 }
+.booking_mobile
+  {
+    background: var(--light-green);
+    color: #eee;
+    border-radius: 1rem;
+    padding:1rem;
+  }
+
 
 
 
@@ -151,12 +169,13 @@
   display: none;
 }
 
-.home{
+.home {
   height: 100vh;
   width: 100vw;
-  background: url("public/images/hom1.jpg");
+  background-image: url("/images/hom1.jpg"); /* Use the public URL */
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
- background-position: center;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -164,6 +183,11 @@
   padding-top: 10rem;
 }
 
+.homeCover{
+ 
+ object-fit: cover;
+ object-position: center;
+}
 .home .content{
    margin-left: 2em;
   flex: .46 .5 20rem;
@@ -263,84 +287,21 @@
     flex: 1 1 45rem;
   }
   .about .main .content h3{
-    font-size: 4rem;
+    font-size: 5rem;
    color: var(--black);
-   
+   top:0;
+  color: var(--black);
+   line-height: 6rem;
   }
-  .about .main .content h3{
-     top:0;
-     font-size: 4rem;
-    color: var(--black);
-   
-  }
+ 
   .about .main .content p{
-    font-size: 1.5rem;
+    font-size: 1.59rem;
     color: var(--light-color);
     padding: .5rem 0;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
+    padding: 1rem;
   }
   
-
-  .swap-wrp {
-    width: 100%;
-    height: 100%;
-  }
-
-  SwiperSlide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .swaper-image img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .img-content{
-    padding: 2rem 0;
-  }
-  .img-content h2{
-    font-size: 2rem;
-    color: var(--black);
-    text-align: center;
-  }
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -380,7 +341,11 @@ section{
         transform-origin: top right;
         transition: none;
       }
-       
+      .header .booking{
+        display: none;
+      }
+      
+      
       .header .navbar.active{
         transform: scale(1);
         opacity: 1;
@@ -409,6 +374,9 @@ section{
        color: var(--light-color);
        line-height: 2;
        padding: 1rem ;
+     }
+     .about .about_title{
+      text-align: center;
      }
       .services .box-container{
         display: grid;
