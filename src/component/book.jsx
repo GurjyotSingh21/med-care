@@ -65,16 +65,7 @@ function Book() {
           id='reason'
           onChange={(e) => setFormData({ ...formData,reason : e.target.value })}
         />
-        <label className="form-label">Time</label>
-        <input
-          type="time"
-          className="form-input"
-          name="time"
-          value={formData.time}
-          id='time'
-          onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-        />
-                <label className="form-label">Date</label>
+        <label className="form-label">Date</label>
         <input
           type="date"
           className="form-input"
