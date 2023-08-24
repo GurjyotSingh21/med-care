@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../public/styles/main.css'
+import '../../public/styles/main.css'
 
 import { FaChevronRight, FaUserMd,FaUser,FaBed, FaAmbulance} from "react-icons/fa";
 function Home() {
