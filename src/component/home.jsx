@@ -4,7 +4,8 @@ import '../../public/styles/main.css'
 import { FaChevronRight, FaUserMd,FaUser,FaBed, FaAmbulance} from "react-icons/fa";
 function Home() {
   return (
-    <>
+    <div className="background-container1">
+    
     <section className="home" id="home">
    
     <div className="content">
@@ -40,7 +41,7 @@ function Home() {
         <p>emergency Ambulance</p>
       </div>
     </section>
-  </>
+</div>
   )
 }
 

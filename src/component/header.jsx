@@ -43,7 +43,7 @@ function Header() {
           }
           
         </nav>
-        <button className='booking' href="#book">Book Appointment</button>
+        <a className='booking' href="#book">Book Appointment</a>
         <div id="menu-btn" onClick={toggleMobileMenu}>
         {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
         </div>
