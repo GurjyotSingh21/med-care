@@ -81,7 +81,7 @@
     margin-left: 1rem;
   }
 
-  .header{
+  .header {
     padding: 1rem 7%;
     position: fixed;
     top:0;
@@ -93,6 +93,7 @@
     align-items: center;
     justify-content: space-between;
     background: #eee;
+    
 }
 .header .logo {
     font-size: 3rem;
@@ -119,9 +120,18 @@
   font-size: 2rem;
   color: var(--light-color);
   margin-left: 2rem;
+  &.booking_mobile{
+    color: white;
+  }
+  
+  & .booking{
+    right:0;
+  }
+  
 }
 
-.header .navbar a:hover{
+
+.header .navbar a:hover:not(:last-child){
   font-weight: 500;
     color: var(--light-green);
 }
@@ -137,10 +147,13 @@
   scale: 1.1;
   transition: .7s;
 }
-
-
-
-
+.booking_mobile
+  {
+    background: var(--light-green);
+    color: #eee;
+    border-radius: 1rem;
+    padding:1rem;
+  }
 #menu-btn{
   font-size: 2.5rem;
   border-radius: .5rem;
@@ -154,16 +167,18 @@
 .home{
   height: 100vh;
   width: 100vw;
-  background: url("public/images/hom1.jpg");
-  background-size: cover;
- background-position: center;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 1.5rem;
   padding-top: 10rem;
 }
-
+ .background-container1{
+  background-image: url("/public/images/hom1.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
 .home .content{
    margin-left: 2em;
   flex: .46 .5 20rem;
@@ -255,6 +270,7 @@
   }
   .about .main .image{
     flex: 1 1 45rem;
+    top: 0;
   }
   .about .main .image img{
     width: 100%;
@@ -263,30 +279,27 @@
     flex: 1 1 45rem;
   }
   .about .main .content h3{
-    font-size: 4rem;
-   color: var(--black);
-   
-  }
-  .about .main .content h3{
-     top:0;
-     font-size: 4rem;
+    font-size: 5rem;
     color: var(--black);
-   
+     top:0;
+    color: var(--black);
+   line-height: 6rem;
   }
+ 
   .about .main .content p{
-    font-size: 1.5rem;
+    font-size: 1.59rem;
     color: var(--light-color);
     padding: .5rem 0;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
+    padding:1rem;
   }
-  
 
   .swap-wrp {
     width: 100%;
     height: 100%;
   }
 
-  SwiperSlide {
+  .SwiperSlide {
     text-align: center;
     font-size: 18px;
     background: #fff;
@@ -298,17 +311,175 @@
   .swaper-image img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: 70%;
     object-fit: cover;
   }
   .img-content{
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
   .img-content h2{
     font-size: 2rem;
     color: var(--black);
     text-align: center;
   }
+.container .card .slide {
+    width:100%;
+    height: 60%;
+    transition: 0.5s;
+}
+
+.container .card .slide.slide1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    z-index: 1;
+    transition: .7s;
+    transform: translateY(100px);
+}
+
+.container .card:hover .slide.slide1{
+    transform: translateY(0px);
+
+}
+
+.container .card .slide.slide2 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
+    transition: .8s;
+    transform: translateY(-110x);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.container .card:hover .slide.slide2{
+    transform: translateY(0);
+}
+
+.container .card .slide.slide2::after{
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    bottom: 5px;
+    left: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.container .card .slide.slide2 .content h2 {
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-size: 2rem;
+    color: var(--black);
+    text-align: center;
+} 
+
+.background-container {
+  background-image: url("/public/images/book.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  
+}
+/* Add these styles to your main.css or another appropriate CSS file */
+/* Add these styles to your main.css or another appropriate CSS file */
+.form {
+  display: flex;
+  justify-content: flex-end; /* Align form to the right */
+}
+
+.form-container {
+  width: 500px;
+  padding: 20px;
+  margin:10px ;
+  border: var(--border);
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  background-color: white;
+}
+
+.form-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  grid-column: span 2; 
+  text-align: right; 
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: var(--border);
+  border-radius: 3px;
+}
+
+.form-submit {
+  background-color: var(--light-green);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+  background-color: var(--green);
+}
+
+.footer .footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0rem, 1fr));
+  gap: 2rem;
+}
+
+/* Adjusted footer item style */
+.footer .footer-content .foot {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem; /* Adjusted padding value */
+}
+
+/* Adjusted footer heading style */
+.footer .footer-content .foot h3 {
+  font-size: 2rem; 
+  color: var(--black);
+  padding: 1rem 0;
+}
+
+.footer .footer-content .foot a {
+  display: block;
+  font-size: 2rem;
+  color: var(--light-color);
+  padding: 1rem 0;
+}
+
+
+.footer .footer-content .foot a .foot-i {
+  padding-right: 0.3rem; 
+  color: var(--green);
+}
+
+
+.footer .footer-content .foot a:hover .foot-i {
+  padding-right: 0.1rem; 
+}
+
+
+.footer .credit {
+  padding: 1.5rem; 
+  padding-top: 2.5rem; 
+  margin-top: 2.5rem; 
+  text-align: center;
+  font-size: 1.8rem; 
+  color: var(--light-color);
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+}
+
 
 
   
@@ -363,59 +534,68 @@ section{
 }
 
 @media(max-width:760px){
-      #menu-btn{
-        display: initial;
-      }
-      .header .navbar{
-        position: absolute;
-        top:115%;
-        right: 2rem;
-        border-radius: .5rem;
-        border: var(--border);
-        box-shadow: var(--box-shadow);
-        width: 30rem;
-        background: #fff;
-        transform: scale(0);
-        opacity: 0;
-        transform-origin: top right;
-        transition: none;
-      }
-       
-      .header .navbar.active{
-        transform: scale(1);
-        opacity: 1;
-        transition: .2s ease-out;
-      }
-      .header .navbar a{
-        font-size: 2rem;
-        text-align: center;
-        display: block;
-        margin: 2.5rem;
-      }
-      
-      .home .content{
-        margin-left: 1em;
-       flex: 1 .4 20rem;
-     }
-     .home .content h3{
-       font-size: 3rem;
-       color: var(--black);
-       line-height: 2;
-       text-shadow: var(--text-shadow);
-     }
-     .home .content p{
-       text-align: left;
-       font-size:1.9rem;
-       color: var(--light-color);
-       line-height: 2;
-       padding: 1rem ;
-     }
-      .services .box-container{
-        display: grid;
-        gap: 2rem;
-        column-count: auto;
-        grid-template-columns: repeat(auto-fit,minmax(25rem,2fr));
-      }
-      
+  #menu-btn{
+    display: initial;
+  }
+  .header .navbar{
+    position: absolute;
+    top:115%;
+    right: 2rem;
+    border-radius: .5rem;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    width: 30rem;
+    background: #fff;
+    transform: scale(0);
+    opacity: 0;
+    transform-origin: top right;
+    transition: none;
+  }
+  .header .booking{
+    display: none;
+  }
+  
+  
+  .header .navbar.active{
+    transform: scale(1);
+    opacity: 1;
+    transition: .2s ease-out;
+  }
+  .header .navbar a{
+    font-size: 2rem;
+    text-align: center;
+    display: block;
+    margin: 2.5rem;
+  }
+  
+  .home .content{
+    margin-left: 1em;
+   flex: 1 .4 20rem;
+ }
+ .home .content h3{
+   font-size: 3rem;
+   color: var(--black);
+   line-height: 2;
+   text-shadow: var(--text-shadow);
+ }
+ .home .content p{
+   text-align: left;
+   font-size:1.9rem;
+   color: var(--light-color);
+   line-height: 2;
+   padding: 1rem ;
+ }
+ .about .about_title{
+  text-align: center;
+ }
+  .services .box-container{
+    display: grid;
+    gap: 2rem;
+    column-count: auto;
+    grid-template-columns: repeat(auto-fit,minmax(25rem,2fr));
+  }
+  
 }
+
+
 
