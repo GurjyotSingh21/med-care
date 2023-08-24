@@ -1,6 +1,5 @@
 import React from 'react'
 import '../../public/styles/main.css'
-
 import { FaChevronRight } from "react-icons/fa";
 
 
