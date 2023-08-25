@@ -1,64 +1,68 @@
-const express = require("express");
-const user_model = require("C:/Users/HP/Desktop/New_Project/med-care/src/component/backend/user-module.js");
-const port = 8080;
-const User = user_model.User;
+const express = require('express');
+const bodyParser = require('body-parser');
+const twilio = require('twilio');
+const mongoose = require('mongoose');
+
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 
-app.get("/:id", async (req, res) => {
-    console.log(req.params.id);
-    let data = await User.find({_id: req.params.id});
-    console.log(data);
-    res.send(data);
+const mongo = "mongodb://localhost:27017/hospital";
+const atlas = "tera atlas ka hospital cluster";
+mongoose.
+  connect(atlas)
+  .then(()=>app.listen(8080))
+  .then(()=>console.log("connected to mongodb at port 8080"))
+  .catch((error)=>console.log(`${error} is error`));
+// User schema and model
+const userSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    phone: Number,
+    reason: String,
+    dname: String,
+    date: String,
+    message: String,
 });
 
-app.get("/", async (req, res) => {
-  let data = await User.find();
-  console.log(data);
-  res.send(data);
+const User = mongoose.model('patient_appointments', userSchema);
+
+// yete tujhe creadital
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = twilio(accountSid, authToken, {
+  lazyLoading: false,
+});
+ 
+app.post('/send-message', async (req, res) => {
+  try {
+    const { name, email, phone, reason, dname, date, message } = req.body;
+
+    // Save user data to MongoDB
+    const user = new User({
+      name, 
+      email, 
+      phone, 
+      reason, 
+      dname, 
+      date, 
+      message
+    });
+    await user.save();
+
+    await client.messages.create({
+      body: `Hello ${name}, your appointment is booked for ${dname} on ${date}`,
+      from: '8668838262',
+      to: phone,
+    });
+
+    res.status(200).json({ message: 'Message sent and user saved successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error sending message and saving user' });
+  }
 });
 
-app.delete("/", async (req, res) => {
-  console.log(req.body._id);
-  let data = await User.deleteOne({ _id: req.body._id });
-  console.log(data);
-  res.send(data);
-});
-
-app.post("/", async (req, res) => {
-  // console.log(req.body);
-  data = req.body;
-  let u = await User(data);
-  let result = u.save();
-  res.send(req.body);
-});
-
-app.put("/", async (req, res) => {
-  console.log(req.body._id);
-  console.log(req.body.name);
-  console.log(req.body.email);
-  console.log(req.body.phone);
-  console.log(req.body.reason);
-  console.log(req.body.dname);
-  console.log(req.body.date);
-  console.log(req.body.message);
-  let u = await User.updateOne(
-    { _id: req.body._id }, 
-    {
-        $set:{
-            name : req.body.name,
-            email : req.body.email,
-            phone : req.body.phone,
-            reason : req.body.reason,
-            dname : req.body.dname,
-            date : req.body.date,
-            message : req.body.message
-        }
-    }
-    );
-  res.send(req.body);
-});
-
-app.listen(port, () => {
-  console.log(`listening on ${port}`);
+const PORT = 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
