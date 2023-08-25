@@ -12,12 +12,10 @@ function Book() {
     message: '',
   });
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     try {
-      const response = await fetch('/backend/index.js', {
+      const response = await fetch('/send-message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -25,10 +23,12 @@ function Book() {
         body: JSON.stringify(formData)
       });
       
-      const data = await response.json();
-      console.log('Booking submitted:', data);
-      alert('Booking submitted successfully');
-
+      if (response.ok) {
+        alert('Message sent and user saved successfully!');
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
       // Clearing the form fields after submission
       setFormData({
         name: '',
@@ -44,7 +44,6 @@ function Book() {
     }
   };
   
-
   return (
     <div className="background-container">
     {
