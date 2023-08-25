@@ -8,7 +8,6 @@ function Book() {
     phone: '',
     reason:'',
     dname:'',
-    time:'',
     date:'',
     message: '',
   });
