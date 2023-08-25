@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../public/styles/main.css'; // Import the CSS file for styling
+import '../../public/styles/main.css'; 
 
 function Book() {
   const [formData, setFormData] = useState({
@@ -8,16 +8,42 @@ function Book() {
     phone: '',
     reason:'',
     dname:'',
-    time:'',
     date:'',
     message: '',
   });
 
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here, e.g., send data to a server
-    console.log(formData);
+    
+    try {
+      const response = await fetch('/backend/index.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const data = await response.json();
+      console.log('Booking submitted:', data);
+      alert('Booking submitted successfully');
+
+      // Clearing the form fields after submission
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        reason: '',
+        dname: '',
+        date: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+    }
   };
+  
 
   return (
     <div className="background-container">
@@ -26,7 +52,7 @@ function Book() {
     <div className='form'>
     <div className="form-container">
       <h2>Contact MedCare Hospital</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} method='post'>
       <label className="form-label">Name</label>
         <input
           type="text"
@@ -94,9 +120,7 @@ function Book() {
         &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" className="form-submit">
           Book
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="submit" className="form-submit">
-          Clear
-        </button>
+
       </form>
     </div>
     </div>
